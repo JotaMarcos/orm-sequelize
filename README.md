@@ -33,15 +33,15 @@ Instalação do nodemon:
 
 Logo após configurar o arquivo package.json:
 
-![image-20220201213713278](C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201213713278.png)
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201213713278.png" alt="image-20220201213713278" style="zoom:50%;" />
 
 Criar dentro da pasta api o arquivo index.js :
 
-![image-20220201213255444](C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201213255444.png)
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201213255444.png" alt="image-20220201213255444" style="zoom:50%;" />
 
 Criar o script de configuração do servidor no arquivo index.js:
 
-![image-20220201213359566](C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201213359566.png)
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201213359566.png" alt="image-20220201213359566" style="zoom:50%;" />
 
 
 
@@ -49,11 +49,11 @@ Rodando o servidor: `$ npm start`
 
 - Saída no terminal:
 
-![image-20220201213809983](C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201213809983.png)
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201213809983.png" alt="image-20220201213809983" style="zoom:50%;" />
 
 - Saída no Postman:
 
-  ![image-20220201214618203](C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201214618203.png)
+  <img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201214618203.png" alt="image-20220201214618203" style="zoom:50%;" />
 
 
 
@@ -70,13 +70,53 @@ Criar um projeto vazio com o Sequelize:
 
 Saída:
 
-![image-20220201222141503](C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201222141503.png)
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201222141503.png" alt="image-20220201222141503" style="zoom:50%;" />
 
 
 
 Criação e configuração do arquivo .sequelizerc:
 
-![image-20220201223113462](C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201223113462.png)
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220201223113462.png" alt="image-20220201223113462" style="zoom:50%;" />
+
+
+
+## Criando usuários no MySQL
+
+Para acessar o terminal em sistemas Unix (Linux/MacOs) basta usar o comando `$ mysql -u [usuário] -p`. Por exemplo, para acessar com o usuário `root`: `mysql -u root -p`. O terminal vai solicitar a senha que você definiu para este usuário nas configurações iniciais e em seguida exibir o prompt do mysql: `mysql>`
+
+Caso seu usuário atual do sistema não seja um usuário sudoer (ou seja, um usuário com privilégios de “administrador”) pode ser necessário o `sudo` no início do comando: `sudo mysql -u [usuário] -p` (você vai precisar da senha correspondente)
+
+Se você utiliza Linux e está com problemas para fazer o Sequelize acessar o banco (o erro de “acesso negado ao usuário 'root'@'localhost'”), como vimos no vídeo, você pode criar um novo usuário para este projeto com os comandos:
+
+`mysql> CREATE USER '[seu nome de usuário]'@'localhost' IDENTIFIED BY '[sua senha]';` - substitua as infos dentro dos colchetes pelas de sua preferência e não esqueça de deletar somente os colchetes - as aspas simples fazem parte do código.
+
+Em seguida, dê ao novo usuário privilégios:
+
+```
+GRANT ALL PRIVILEGES ON * . * TO '[seu nome de usuário]'@'localhost';COPIAR CÓDIGO
+```
+
+Importante: Veja que o comando acima dá ao usuário recém-criado privilégios totais de acesso! Ao mesmo tempo que isso é OK enquanto se trabalha localmente, não é o que costuma acontecer quando se trabalha em um projeto com acesso de diversos usuários e informações sensíveis no banco, por razões de segurança.
+
+Por último, rode o comando: `FLUSH PRIVILEGES;` para recarregar as permissões.
+
+Acessando o MySQL pelo terminal:
+
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220202074027703.png" alt="image-20220202074027703" style="zoom:50%;" />
+
+
+
+Criando a base de dados:
+
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220202074636026.png" alt="image-20220202074636026" style="zoom:50%;" />
+
+
+
+Configurando pelo Sequelize dentro do caminho /api/config o arquivo config.json:
+
+<img src="C:\Users\joao.duarte\AppData\Roaming\Typora\typora-user-images\image-20220202075222280.png" alt="image-20220202075222280" style="zoom:50%;" />
+
+
 
 
 
